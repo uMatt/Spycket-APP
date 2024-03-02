@@ -8,6 +8,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import retrofit2.Retrofit;
+import retrofit2.http.GET;
+
 public class AnalysisView extends AppCompatActivity {
 
     @Override
@@ -21,5 +24,11 @@ public class AnalysisView extends AppCompatActivity {
             return insets;
         });
 
+        /* TODO : CHANGE URL */
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://api.github.com/")
+                .build();
+
+        @GET(value = "/list")
     }
 }
