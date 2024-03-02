@@ -2,7 +2,9 @@ package com.cqrit.spycket;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -31,41 +33,26 @@ public class AnalysisView extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         listView = findViewById(R.id.analysisList);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://url.com")
+                .baseUrl("https://jsonplaceholder.typicode.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
-        apiService = retrofit.create(ApiService.class);
-
-        fetchData();
-    }
-
-    private void fetchData() {
+        ApiService apiService = retrofit.create(ApiService.class);
         Call<List<String>> call = apiService.getPackages();
         call.enqueue(new Callback<List<String>>() {
             @Override
-            public void onResponse(@NonNull Call<List<String>> call, @NonNull Response<List<String>> response) {
-                if (response.isSuccessful()) {
-                    List<String> packages = response.body();
-                    if (packages != null) {
-                        updateListView(packages);
-                    }
-                } else {
-                    // Gérer les erreurs ici
-                }
+            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
+                arrayAdapter.addAll(response.body());
+                listView.setAdapter(arrayAdapter);
+                Toast.makeText(AnalysisView.this, "Todos fetched successfully", Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onFailure(@NonNull Call<List<String>> call, @NonNull Throwable t) {
-                // Gérer les erreurs ici
+            public void onFailure(Call<List<String>> call, Throwable t) {
+                Toast.makeText(AnalysisView.this, "Error fetching data", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    private void updateListView(List<String> packages) {
-        PackageAdapter adapter = new PackageAdapter(this, packages);
-        listView.setAdapter(adapter);
     }
 }
