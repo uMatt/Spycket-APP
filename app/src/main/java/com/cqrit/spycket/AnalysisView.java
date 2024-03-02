@@ -28,7 +28,5 @@ public class AnalysisView extends AppCompatActivity {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://api.github.com/")
                 .build();
-
-        @GET(value = "/list")
     }
 }
