@@ -5,4 +5,4 @@
 ## Contributing
 
 ## License
-This project is licensed under the WTFPL (Do What the Fuck You Want to Public License). See the LICENSE file for more details.
+This project is licensed under the WTFPL (Do What the Fuck You Want to Public License). See the [LICENSE](https://github.com/uMatt/Spycket-APP/blob/master/LICENSE) file for more details.
