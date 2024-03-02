@@ -14,6 +14,7 @@ import java.util.List;
 
 public class PackageAdapter extends ArrayAdapter<String> {
     private List<String> packages;
+    p
 
     public PackageAdapter(Context context, List<String> packages) {
         super(context, 0, packages);
