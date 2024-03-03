@@ -7,8 +7,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -40,7 +38,6 @@ public class CaptureView extends AppCompatActivity {
         OkHttpClient httpClient = new OkHttpClient();
         String URL_BASE = "http://10.3.122.96:5000";
         Retrofit retrofit = new Retrofit.Builder()
-                // TODO : CHANGE URL
                 .client(httpClient)
                 .baseUrl(URL_BASE +"/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -64,16 +61,14 @@ public class CaptureView extends AppCompatActivity {
 
         });
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                CaptureData selectedData = arrayAdapter.getItem(position);
-                String itemName = listView.getItemAtPosition(position).toString();
-                Intent intent = new Intent(CaptureView.this, PacketView.class);
-                intent.putExtra("selectedData", String.valueOf(selectedData));
-                intent.putExtra("itemName", itemName);
-                startActivity(intent);
-            }
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            CaptureData selectedData = arrayAdapter.getItem(position);
+            String itemName = listView.getItemAtPosition(position).toString();
+            Intent intent = new Intent(CaptureView.this, PacketView.class);
+            intent.putExtra("selectedData", String.valueOf(selectedData));
+            intent.putExtra("itemName", itemName);
+            startActivity(intent);
         });
+
     }
 }
