@@ -10,38 +10,42 @@
 
     <TextView
         android:id="@+id/Title"
-        android:layout_width="185dp"
-        android:layout_height="29dp"
+        android:layout_width="309dp"
+        android:layout_height="50dp"
         android:fontFamily="serif"
         android:text="Spycket Sniffer"
         android:textColor="#FFFFFF"
-        android:textSize="24sp"
+        android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.647"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.139" />
+        app:layout_constraintVertical_bias="0.176" />
 
     <Button
         android:id="@+id/watchLast_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="124dp"
+        android:layout_height="71dp"
         android:layout_marginEnd="56dp"
-        android:background="@color/black"
+        android:background="#072C6A"
         android:onClick="watch"
         android:text="Watch Last"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/watchAll_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="133dp"
+        android:layout_height="72dp"
+        android:background="#072C6A"
         android:text="Watch All"
-        android:background="@android:color/background_dark"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/watchLast_button"
+        app:layout_constraintHorizontal_bias="0.591"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
