@@ -4,13 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.cqrit.spycket.models.DataList;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -38,6 +42,7 @@ public class AnalysisView extends AppCompatActivity {
                 .build();
         ApiService apiService = retrofit.create(ApiService.class);
         Call<List<DataList>> call = apiService.getData();
+
         call.enqueue(new Callback<List<DataList>>() {
             @Override
             public void onResponse(@NonNull Call<List<DataList>> call, @NonNull Response<List<DataList>> response) {
@@ -50,6 +55,18 @@ public class AnalysisView extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Call<List<DataList>> call, @NonNull Throwable t) {
                 Toast.makeText(AnalysisView.this, "Error fetching data", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Récupération de l'objet DataList sélectionné
+                DataList selectedData = arrayAdapter.getItem(position);
+                // Lancement de DetailActivity en passant les données nécessaires
+                Intent intent = new Intent(AnalysisView.this, DetailAnalysis.class);
+                intent.putExtra("selectedData", String.valueOf(selectedData));
+                startActivity(intent);
             }
         });
     }

@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Spycket"
         tools:targetApi="31">
         <activity
+            android:name=".DetailAnalysis"
+            android:exported="false" />
+        <activity
             android:name=".AnalysisView"
             android:exported="true" />
         <activity
