@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cqrit.spycket.models.PacketData;
@@ -31,6 +32,12 @@ public class PacketView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_packet_view);
 
+        String itemName = getIntent().getStringExtra("itemName");
+        setTitle(itemName);
+
+        TextView detailsTextView = findViewById(R.id.data_packet_text);
+        detailsTextView.setText("Details of " + itemName + " capture");
+
         listView = findViewById(R.id.detailsCaptureList);
         ArrayAdapter<PacketData> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
 
@@ -41,8 +48,6 @@ public class PacketView extends AppCompatActivity {
                 .build();
         PacketApiService packetApiService = retrofit.create(PacketApiService.class);
         Call<List<PacketData>> call = packetApiService.getPacket();
-
-
 
         call.enqueue(new Callback<List<PacketData>>() {
             @Override
