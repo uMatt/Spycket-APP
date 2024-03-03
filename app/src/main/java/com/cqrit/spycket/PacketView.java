@@ -12,7 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.cqrit.spycket.models.CaptureData;
+import com.cqrit.spycket.models.PacketData;
 
 import java.util.List;
 
@@ -29,22 +29,24 @@ public class PacketView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_capture);
+        setContentView(R.layout.activity_packet_view);
 
         listView = findViewById(R.id.detailsCaptureList);
-        ArrayAdapter<CaptureData> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+        ArrayAdapter<PacketData> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
 
         Retrofit retrofit = new Retrofit.Builder()
                 // TODO : CHANGE URL
                 .baseUrl("https://jsonplaceholder.typicode.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        ApiService apiService = retrofit.create(ApiService.class);
-        Call<List<CaptureData>> call = apiService.getData();
+        PacketApiService packetApiService = retrofit.create(PacketApiService.class);
+        Call<List<PacketData>> call = packetApiService.getPacket();
 
-        call.enqueue(new Callback<List<CaptureData>>() {
+
+
+        call.enqueue(new Callback<List<PacketData>>() {
             @Override
-            public void onResponse(@NonNull Call<List<CaptureData>> call, @NonNull Response<List<CaptureData>> response) {
+            public void onResponse(@NonNull Call<List<PacketData>> call, @NonNull Response<List<PacketData>> response) {
                 assert response.body() != null;
                 arrayAdapter.addAll(response.body());
                 listView.setAdapter(arrayAdapter);
@@ -52,7 +54,7 @@ public class PacketView extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(@NonNull Call<List<CaptureData>> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<List<PacketData>> call, @NonNull Throwable t) {
                 Toast.makeText(PacketView.this, "Error fetching data", Toast.LENGTH_SHORT).show();
             }
         });
@@ -60,10 +62,8 @@ public class PacketView extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // Récupération de l'objet CaptureData sélectionné
-                CaptureData selectedData = arrayAdapter.getItem(position);
-                // Lancement de DetailActivity en passant les données nécessaires
-                Intent intent = new Intent(PacketView.this, PacketView.class);
+                PacketData selectedData = arrayAdapter.getItem(position);
+                Intent intent = new Intent(PacketView.this, DataView.class);
                 intent.putExtra("selectedData", String.valueOf(selectedData));
                 startActivity(intent);
             }

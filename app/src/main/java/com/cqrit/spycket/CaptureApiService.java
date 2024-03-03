@@ -8,7 +8,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
-public interface ApiService {
+public interface CaptureApiService {
     @GET("todos")
     Call<List<CaptureData>> getData();
 }

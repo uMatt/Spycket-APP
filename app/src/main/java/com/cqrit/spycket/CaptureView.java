@@ -29,7 +29,7 @@ public class CaptureView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_analysis_view);
+        setContentView(R.layout.activity_capture_view);
 
         listView = findViewById(R.id.detailsCaptureList);
         ArrayAdapter<CaptureData> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
@@ -39,8 +39,8 @@ public class CaptureView extends AppCompatActivity {
                 .baseUrl("https://jsonplaceholder.typicode.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        ApiService apiService = retrofit.create(ApiService.class);
-        Call<List<CaptureData>> call = apiService.getData();
+        CaptureApiService captureApiService = retrofit.create(CaptureApiService.class);
+        Call<List<CaptureData>> call = captureApiService.getData();
 
         call.enqueue(new Callback<List<CaptureData>>() {
             @Override
@@ -60,9 +60,7 @@ public class CaptureView extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // Récupération de l'objet CaptureData sélectionné
                 CaptureData selectedData = arrayAdapter.getItem(position);
-                // Lancement de DetailActivity en passant les données nécessaires
                 Intent intent = new Intent(CaptureView.this, PacketView.class);
                 intent.putExtra("selectedData", String.valueOf(selectedData));
                 startActivity(intent);
