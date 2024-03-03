@@ -1,10 +1,10 @@
 package com.cqrit.spycket;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -40,14 +40,15 @@ public class AnalysisView extends AppCompatActivity {
         Call<List<Todo>> call = apiService.getTodos();
         call.enqueue(new Callback<List<Todo>>() {
             @Override
-            public void onResponse(Call<List<Todo>> call, Response<List<Todo>> response) {
+            public void onResponse(@NonNull Call<List<Todo>> call, @NonNull Response<List<Todo>> response) {
+                assert response.body() != null;
                 arrayAdapter.addAll(response.body());
                 listView.setAdapter(arrayAdapter);
                 Toast.makeText(AnalysisView.this, "Analysis fetched successfully", Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onFailure(Call<List<Todo>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<Todo>> call, @NonNull Throwable t) {
                 Toast.makeText(AnalysisView.this, "Error fetching data", Toast.LENGTH_SHORT).show();
             }
         });
