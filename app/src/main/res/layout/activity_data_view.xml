@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/data_packet_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="48dp"
+        android:text="Data of ..."
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="296dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/macDestData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="No MAC available"
+        app:layout_constraintEnd_toEndOf="@+id/macDestText"
+        app:layout_constraintTop_toBottomOf="@+id/macDestText" />
+
+    <TextView
+        android:id="@+id/macSourceText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:layout_marginBottom="8dp"
+        android:text="MAC Source :"
+        app:layout_constraintBottom_toTopOf="@+id/macSourceData"
+        app:layout_constraintStart_toStartOf="@+id/macSourceData" />
+
+    <TextView
+        android:id="@+id/ipDestText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="17dp"
+        android:text="IP destination"
+        app:layout_constraintBottom_toTopOf="@+id/ipDestData"
+        app:layout_constraintStart_toStartOf="@+id/ipDestData" />
+
+    <TextView
+        android:id="@+id/ipSourceText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:layout_marginBottom="17dp"
+        android:text="IP Source :"
+        app:layout_constraintBottom_toTopOf="@+id/ipSourceData"
+        app:layout_constraintStart_toStartOf="@+id/ipSourceData" />
+
+    <TextView
+        android:id="@+id/ipSourceData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:text="No IP available"
+        app:layout_constraintBottom_toTopOf="@+id/macSourceText"
+        app:layout_constraintEnd_toEndOf="@+id/macSourceData"
+        app:layout_constraintStart_toStartOf="@+id/macSourceData" />
+
+    <TextView
+        android:id="@+id/macDestText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="53dp"
+        android:layout_marginBottom="58dp"
+        android:text="MAC Destination :"
+        app:layout_constraintBottom_toTopOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/ipDestData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="25dp"
+        android:text="No IP available"
+        app:layout_constraintBottom_toTopOf="@+id/macDestText"
+        app:layout_constraintEnd_toEndOf="@+id/macDestText" />
+
+    <TextView
+        android:id="@+id/macSourceData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginBottom="31dp"
+        android:text="No MAC available"
+        app:layout_constraintBottom_toTopOf="@+id/view2"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/dateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="7dp"
+        android:text="No date available"
+        app:layout_constraintStart_toStartOf="@+id/data_packet_text"
+        app:layout_constraintTop_toBottomOf="@+id/data_packet_text" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
