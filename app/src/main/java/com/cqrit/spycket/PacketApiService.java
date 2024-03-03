@@ -9,6 +9,6 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 
 public interface PacketApiService {
-    @GET("todos")
+    @GET("api/informations")
     Call<List<PacketData>> getPacket();
 }

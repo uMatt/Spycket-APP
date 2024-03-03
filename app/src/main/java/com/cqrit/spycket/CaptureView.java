@@ -16,6 +16,7 @@ import com.cqrit.spycket.models.CaptureData;
 
 import java.util.List;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -25,6 +26,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class CaptureView extends AppCompatActivity {
 
     private ListView listView;
+    private static final String URL_BASE = "http://10.3.122.96:5000";
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +36,11 @@ public class CaptureView extends AppCompatActivity {
         listView = findViewById(R.id.detailsCaptureList);
         ArrayAdapter<CaptureData> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
 
+        OkHttpClient httpClient = new OkHttpClient();
         Retrofit retrofit = new Retrofit.Builder()
                 // TODO : CHANGE URL
-                .baseUrl("https://jsonplaceholder.typicode.com")
+                .client(httpClient)
+                .baseUrl(URL_BASE +"/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         CaptureApiService captureApiService = retrofit.create(CaptureApiService.class);
@@ -50,7 +54,6 @@ public class CaptureView extends AppCompatActivity {
                 listView.setAdapter(arrayAdapter);
                 Toast.makeText(CaptureView.this, "Analysis fetched successfully", Toast.LENGTH_SHORT).show();
             }
-
             @Override
             public void onFailure(@NonNull Call<List<CaptureData>> call, @NonNull Throwable t) {
                 Toast.makeText(CaptureView.this, "Error fetching data", Toast.LENGTH_SHORT).show();

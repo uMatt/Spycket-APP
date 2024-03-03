@@ -1,23 +1,21 @@
 package com.cqrit.spycket.models;
 
 public class CaptureData {
-    private final int userId;
+    private final int numero_trame;
     private final int id;
-    private final String title;
-    private final boolean completed;
+    private final String ip;
 
     // Constructor
-    public CaptureData(int userId, int id, String title, boolean completed) {
+    public CaptureData(int numero_trame, int id, String ip) {
         //TODO  : CHANGE NAME OF VARIABLES
-        this.userId = userId;
+        this.numero_trame = numero_trame;
         this.id = id;
-        this.title = title;
-        this.completed = completed;
+        this.ip = ip;
     }
 
     // Getters
     public int getUserId() {
-        return userId;
+        return numero_trame;
     }
 
     public int getId() {
@@ -25,15 +23,11 @@ public class CaptureData {
     }
 
     public String getTitle() {
-        return title;
-    }
-
-    public boolean isCompleted() {
-        return completed;
+        return ip;
     }
 
     //TODO : CHANGE NAME OF WHAT WE WANT
     public String toString() {
-        return this.title;
+        return this.ip;
     }
 }
