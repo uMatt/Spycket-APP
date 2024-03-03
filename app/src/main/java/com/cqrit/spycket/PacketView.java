@@ -22,14 +22,14 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class AnalysisView extends AppCompatActivity {
+public class PacketView extends AppCompatActivity {
 
     private ListView listView;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_analysis_view);
+        setContentView(R.layout.activity_detail_capture);
 
         listView = findViewById(R.id.detailsCaptureList);
         ArrayAdapter<CaptureData> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
@@ -39,8 +39,8 @@ public class AnalysisView extends AppCompatActivity {
                 .baseUrl("https://jsonplaceholder.typicode.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        CaptureDataService captureDataService = retrofit.create(CaptureDataService.class);
-        Call<List<CaptureData>> call = captureDataService.getData();
+        ApiService apiService = retrofit.create(ApiService.class);
+        Call<List<CaptureData>> call = apiService.getData();
 
         call.enqueue(new Callback<List<CaptureData>>() {
             @Override
@@ -48,12 +48,12 @@ public class AnalysisView extends AppCompatActivity {
                 assert response.body() != null;
                 arrayAdapter.addAll(response.body());
                 listView.setAdapter(arrayAdapter);
-                Toast.makeText(AnalysisView.this, "Analysis fetched successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PacketView.this, "Analysis fetched successfully", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(@NonNull Call<List<CaptureData>> call, @NonNull Throwable t) {
-                Toast.makeText(AnalysisView.this, "Error fetching data", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PacketView.this, "Error fetching data", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -63,7 +63,7 @@ public class AnalysisView extends AppCompatActivity {
                 // Récupération de l'objet CaptureData sélectionné
                 CaptureData selectedData = arrayAdapter.getItem(position);
                 // Lancement de DetailActivity en passant les données nécessaires
-                Intent intent = new Intent(AnalysisView.this, DetailAnalysis.class);
+                Intent intent = new Intent(PacketView.this, PacketView.class);
                 intent.putExtra("selectedData", String.valueOf(selectedData));
                 startActivity(intent);
             }

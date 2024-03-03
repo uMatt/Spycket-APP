@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AnalysisView">
+    tools:context=".CaptureView">
 
     <TextView
         android:id="@+id/details_capture_text"
