@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.cqrit.spycket.models.DataList;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -32,7 +31,7 @@ public class AnalysisView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_analysis_view);
 
-        listView = findViewById(R.id.analysisList);
+        listView = findViewById(R.id.detailsCaptureList);
         ArrayAdapter<DataList> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
 
         Retrofit retrofit = new Retrofit.Builder()
