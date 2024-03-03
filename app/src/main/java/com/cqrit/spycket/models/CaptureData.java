@@ -1,13 +1,13 @@
 package com.cqrit.spycket.models;
 
-public class DataList {
+public class CaptureData {
     private final int userId;
     private final int id;
     private final String title;
     private final boolean completed;
 
     // Constructor
-    public DataList(int userId, int id, String title, boolean completed) {
+    public CaptureData(int userId, int id, String title, boolean completed) {
         //TODO  : CHANGE NAME OF VARIABLES
         this.userId = userId;
         this.id = id;

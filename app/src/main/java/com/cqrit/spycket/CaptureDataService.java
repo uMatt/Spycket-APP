@@ -1,14 +1,14 @@
 package com.cqrit.spycket;
 
 
-import com.cqrit.spycket.models.DataList;
+import com.cqrit.spycket.models.CaptureData;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
 
-public interface ApiService {
+public interface CaptureDataService {
     @GET("todos")
-    Call<List<DataList>> getData();
+    Call<List<CaptureData>> getData();
 }

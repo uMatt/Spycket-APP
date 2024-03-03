@@ -12,7 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.cqrit.spycket.models.DataList;
+import com.cqrit.spycket.models.CaptureData;
 
 import java.util.List;
 
@@ -32,19 +32,19 @@ public class AnalysisView extends AppCompatActivity {
         setContentView(R.layout.activity_analysis_view);
 
         listView = findViewById(R.id.detailsCaptureList);
-        ArrayAdapter<DataList> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+        ArrayAdapter<CaptureData> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
 
         Retrofit retrofit = new Retrofit.Builder()
                 // TODO : CHANGE URL
                 .baseUrl("https://jsonplaceholder.typicode.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        ApiService apiService = retrofit.create(ApiService.class);
-        Call<List<DataList>> call = apiService.getData();
+        CaptureDataService captureDataService = retrofit.create(CaptureDataService.class);
+        Call<List<CaptureData>> call = captureDataService.getData();
 
-        call.enqueue(new Callback<List<DataList>>() {
+        call.enqueue(new Callback<List<CaptureData>>() {
             @Override
-            public void onResponse(@NonNull Call<List<DataList>> call, @NonNull Response<List<DataList>> response) {
+            public void onResponse(@NonNull Call<List<CaptureData>> call, @NonNull Response<List<CaptureData>> response) {
                 assert response.body() != null;
                 arrayAdapter.addAll(response.body());
                 listView.setAdapter(arrayAdapter);
@@ -52,7 +52,7 @@ public class AnalysisView extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(@NonNull Call<List<DataList>> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<List<CaptureData>> call, @NonNull Throwable t) {
                 Toast.makeText(AnalysisView.this, "Error fetching data", Toast.LENGTH_SHORT).show();
             }
         });
@@ -60,8 +60,8 @@ public class AnalysisView extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // Récupération de l'objet DataList sélectionné
-                DataList selectedData = arrayAdapter.getItem(position);
+                // Récupération de l'objet CaptureData sélectionné
+                CaptureData selectedData = arrayAdapter.getItem(position);
                 // Lancement de DetailActivity en passant les données nécessaires
                 Intent intent = new Intent(AnalysisView.this, DetailAnalysis.class);
                 intent.putExtra("selectedData", String.valueOf(selectedData));
