@@ -1,32 +1,56 @@
 package com.cqrit.spycket;
 
-import android.os.Bundle;
-
-import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
+import android.annotation.SuppressLint;
+import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import com.cqrit.spycket.models.DataList;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.http.GET;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AnalysisView extends AppCompatActivity {
 
+    private ListView listView;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_analysis_view);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
-        /* TODO : CHANGE URL */
+        listView = findViewById(R.id.analysisList);
+        ArrayAdapter<DataList> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.github.com/")
+                // TODO : CHANGE URL
+                .baseUrl("https://jsonplaceholder.typicode.com")
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        ApiService apiService = retrofit.create(ApiService.class);
+        Call<List<DataList>> call = apiService.getData();
+        call.enqueue(new Callback<List<DataList>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<DataList>> call, @NonNull Response<List<DataList>> response) {
+                assert response.body() != null;
+                arrayAdapter.addAll(response.body());
+                listView.setAdapter(arrayAdapter);
+                Toast.makeText(AnalysisView.this, "Analysis fetched successfully", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<DataList>> call, @NonNull Throwable t) {
+                Toast.makeText(AnalysisView.this, "Error fetching data", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
