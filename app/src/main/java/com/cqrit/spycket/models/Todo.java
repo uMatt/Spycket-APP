@@ -1,10 +1,10 @@
 package com.cqrit.spycket.models;
 
 public class Todo {
-    private int userId;
-    private int id;
-    private String title;
-    private boolean completed;
+    private final int userId;
+    private final int id;
+    private final String title;
+    private final boolean completed;
 
     // Constructor
     public Todo(int userId, int id, String title, boolean completed) {
@@ -29,23 +29,6 @@ public class Todo {
 
     public boolean isCompleted() {
         return completed;
-    }
-
-    // Setters
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
     }
 
     //TODO : CHANGE NAME OF WHAT WE WANT
