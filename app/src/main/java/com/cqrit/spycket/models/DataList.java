@@ -1,13 +1,14 @@
 package com.cqrit.spycket.models;
 
-public class Todo {
+public class DataList {
     private final int userId;
     private final int id;
     private final String title;
     private final boolean completed;
 
     // Constructor
-    public Todo(int userId, int id, String title, boolean completed) {
+    public DataList(int userId, int id, String title, boolean completed) {
+        //TODO  : CHANGE NAME OF VARIABLES
         this.userId = userId;
         this.id = id;
         this.title = title;
@@ -33,6 +34,6 @@ public class Todo {
 
     //TODO : CHANGE NAME OF WHAT WE WANT
     public String toString() {
-        return String.valueOf(this.id);
+        return this.title;
     }
 }

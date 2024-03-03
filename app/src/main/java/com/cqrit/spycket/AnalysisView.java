@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.cqrit.spycket.models.Todo;
+import com.cqrit.spycket.models.DataList;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ public class AnalysisView extends AppCompatActivity {
         setContentView(R.layout.activity_analysis_view);
 
         listView = findViewById(R.id.analysisList);
-        ArrayAdapter<Todo> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+        ArrayAdapter<DataList> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
 
         Retrofit retrofit = new Retrofit.Builder()
                 // TODO : CHANGE URL
@@ -37,10 +37,10 @@ public class AnalysisView extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiService apiService = retrofit.create(ApiService.class);
-        Call<List<Todo>> call = apiService.getTodos();
-        call.enqueue(new Callback<List<Todo>>() {
+        Call<List<DataList>> call = apiService.getData();
+        call.enqueue(new Callback<List<DataList>>() {
             @Override
-            public void onResponse(@NonNull Call<List<Todo>> call, @NonNull Response<List<Todo>> response) {
+            public void onResponse(@NonNull Call<List<DataList>> call, @NonNull Response<List<DataList>> response) {
                 assert response.body() != null;
                 arrayAdapter.addAll(response.body());
                 listView.setAdapter(arrayAdapter);
@@ -48,7 +48,7 @@ public class AnalysisView extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(@NonNull Call<List<Todo>> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<List<DataList>> call, @NonNull Throwable t) {
                 Toast.makeText(AnalysisView.this, "Error fetching data", Toast.LENGTH_SHORT).show();
             }
         });

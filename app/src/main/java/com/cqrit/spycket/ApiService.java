@@ -1,7 +1,7 @@
 package com.cqrit.spycket;
 
 
-import com.cqrit.spycket.models.Todo;
+import com.cqrit.spycket.models.DataList;
 
 import java.util.List;
 
@@ -10,5 +10,5 @@ import retrofit2.http.GET;
 
 public interface ApiService {
     @GET("todos")
-    Call<List<Todo>> getTodos();
+    Call<List<DataList>> getData();
 }
