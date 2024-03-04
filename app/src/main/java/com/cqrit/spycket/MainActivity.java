@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //watch
     public void watch (View view){
         Intent intent = new Intent(this, CaptureView.class);
         view.getContext().startActivity(intent);
