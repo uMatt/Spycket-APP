@@ -7,6 +7,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -39,7 +41,7 @@ public class CaptureView extends AppCompatActivity {
         String URL_BASE = "http://10.3.122.96:5000";
         Retrofit retrofit = new Retrofit.Builder()
                 .client(httpClient)
-                .baseUrl(URL_BASE +"/")
+                .baseUrl(URL_BASE + "/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         CaptureApiService captureApiService = retrofit.create(CaptureApiService.class);
@@ -53,6 +55,7 @@ public class CaptureView extends AppCompatActivity {
                 listView.setAdapter(arrayAdapter);
                 Toast.makeText(CaptureView.this, "Analysis fetched successfully", Toast.LENGTH_SHORT).show();
             }
+
             @Override
             public void onFailure(@NonNull Call<List<CaptureData>> call, @NonNull Throwable t) {
                 Log.e("CaptureView", "Error fetching data", t);
@@ -61,14 +64,16 @@ public class CaptureView extends AppCompatActivity {
 
         });
 
-        listView.setOnItemClickListener((parent, view, position, id) -> {
-            CaptureData selectedData = arrayAdapter.getItem(position);
-            String itemName = listView.getItemAtPosition(position).toString();
-            Intent intent = new Intent(CaptureView.this, PacketView.class);
-            intent.putExtra("selectedData", String.valueOf(selectedData));
-            intent.putExtra("itemName", itemName);
-            startActivity(intent);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                CaptureData selectedData = arrayAdapter.getItem(position);
+                String itemName = listView.getItemAtPosition(position).toString();
+                Intent intent = new Intent(CaptureView.this, PacketView.class);
+                intent.putExtra("selectedData", String.valueOf(selectedData));
+                intent.putExtra("itemName", itemName);
+                startActivity(intent);
+            }
         });
-
     }
 }
