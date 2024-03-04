@@ -9,6 +9,6 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 
 public interface CaptureApiService {
-    @GET("api/informations")
+    @GET("api/execution")
     Call<List<CaptureData>> getData();
 }

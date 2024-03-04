@@ -1,33 +1,26 @@
 package com.cqrit.spycket.models;
 
+import androidx.annotation.NonNull;
+
 public class CaptureData {
-    private final int numero_trame;
-    private final int id;
-    private final String ip;
+    private final int id_execution;
+    private final String nom;
 
     // Constructor
-    public CaptureData(int numero_trame, int id, String ip) {
-        //TODO  : CHANGE NAME OF VARIABLES
-        this.numero_trame = numero_trame;
-        this.id = id;
-        this.ip = ip;
+    public CaptureData(int id_execution, String nom) {
+        this.id_execution = id_execution;
+        this.nom = nom;
     }
 
     // Getters
-    public int getUserId() {
-        return numero_trame;
-    }
 
-    public int getId() {
-        return id;
-    }
 
-    public String getTitle() {
-        return ip;
-    }
-
-    //TODO : CHANGE NAME OF WHAT WE WANT
+    @NonNull
     public String toString() {
-        return this.ip;
+        return this.nom;
+    }
+
+    public int getId_execution() {
+        return id_execution;
     }
 }
