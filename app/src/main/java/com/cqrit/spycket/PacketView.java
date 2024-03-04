@@ -22,9 +22,14 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.GET;
 
 public class PacketView extends AppCompatActivity {
 
+    public interface PacketApiService {
+        @GET("api/informations")
+        Call<List<PacketData>> getPacket();
+    }
     private ListView listView;
     @SuppressLint("MissingInflatedId")
     @Override
