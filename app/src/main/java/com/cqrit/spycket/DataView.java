@@ -46,7 +46,6 @@ public class DataView extends AppCompatActivity {
         TextView ipDestData = findViewById(R.id.ipDestData);
         TextView macSourceData = findViewById(R.id.macSourceData);
         TextView macDestData = findViewById(R.id.macDestData);
-        TextView dateData = findViewById(R.id.dateText);
 
         OkHttpClient httpClient = new OkHttpClient();
         String URL_BASE = "http://10.3.122.96:5000";
@@ -68,7 +67,6 @@ public class DataView extends AppCompatActivity {
                     ipDestData.setText(data.getIp_dst());
                     macSourceData.setText(data.getMac_src());
                     macDestData.setText(data.getMac_dst());
-                    dateData.setText(data.getDate());
                 }
                 Toast.makeText(DataView.this, "Analysis fetched successfully", Toast.LENGTH_SHORT).show();
             }
