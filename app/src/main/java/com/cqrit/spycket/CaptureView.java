@@ -78,6 +78,7 @@ public class CaptureView extends AppCompatActivity {
                 Intent intent = new Intent(CaptureView.this, PacketView.class);
                 intent.putExtra("selectedData", String.valueOf(selectedData));
                 intent.putExtra("itemName", itemName);
+                //intent.putExtra("ID_EXEC", )
                 startActivity(intent);
             }
         });
