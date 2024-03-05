@@ -17,6 +17,7 @@ import com.cqrit.spycket.models.PacketData;
 
 import java.util.List;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -27,7 +28,7 @@ import retrofit2.http.GET;
 public class PacketView extends AppCompatActivity {
 
     public interface PacketApiService {
-        @GET("api/informations")
+        @GET("api/test/1")
         Call<List<PacketData>> getPacket();
     }
     private ListView listView;
@@ -46,9 +47,11 @@ public class PacketView extends AppCompatActivity {
         listView = findViewById(R.id.detailsCaptureList);
         ArrayAdapter<PacketData> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
 
+        OkHttpClient httpClient = new OkHttpClient();
+        String URL_BASE = "http://10.3.122.96:5000";
         Retrofit retrofit = new Retrofit.Builder()
-                // TODO : CHANGE URL
-                .baseUrl("https://jsonplaceholder.typicode.com")
+                .client(httpClient)
+                .baseUrl(URL_BASE + "/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         PacketApiService packetApiService = retrofit.create(PacketApiService.class);
