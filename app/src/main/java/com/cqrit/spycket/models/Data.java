@@ -8,15 +8,17 @@ public class Data {
     private final String mac_src;
     private final String mac_dst;
 
+    private final String date;
 
 
 
     // Constructor
-    public Data(String ip_src, String ip_dst, String mac_src, String mac_dst) {
+    public Data(String ip_src, String ip_dst, String mac_src, String mac_dst, String date) {
         this.ip_src = ip_src;
         this.ip_dst = ip_dst;
         this.mac_src = mac_src;
         this.mac_dst = mac_dst;
+        this.date = date;
     }
 
     public String getIp_src() {
@@ -33,6 +35,10 @@ public class Data {
 
     public String getMac_dst() {
         return mac_dst;
+    }
+
+    public String getDate() {
+        return date;
     }
 
     // Getters

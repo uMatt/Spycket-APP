@@ -32,37 +32,39 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="53dp"
         android:text="No MAC available"
-        app:layout_constraintEnd_toEndOf="@+id/macDestText"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/macDestText" />
 
     <TextView
         android:id="@+id/macSourceText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="13dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="9dp"
         android:text="MAC Source :"
         app:layout_constraintBottom_toTopOf="@+id/macSourceData"
+        app:layout_constraintEnd_toEndOf="@+id/macSourceData"
         app:layout_constraintStart_toStartOf="@+id/macSourceData" />
 
     <TextView
         android:id="@+id/ipDestText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="64dp"
         android:layout_marginBottom="17dp"
         android:text="IP destination"
         app:layout_constraintBottom_toTopOf="@+id/ipDestData"
-        app:layout_constraintStart_toStartOf="@+id/ipDestData" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/ipSourceText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="13dp"
-        android:layout_marginBottom="17dp"
+        android:layout_marginBottom="18dp"
         android:text="IP Source :"
         app:layout_constraintBottom_toTopOf="@+id/ipSourceData"
+        app:layout_constraintEnd_toEndOf="@+id/ipSourceData"
         app:layout_constraintStart_toStartOf="@+id/ipSourceData" />
 
     <TextView
@@ -79,21 +81,21 @@
         android:id="@+id/macDestText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="53dp"
         android:layout_marginBottom="58dp"
         android:text="MAC Destination :"
         app:layout_constraintBottom_toTopOf="@+id/view2"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/macDestData"
+        app:layout_constraintStart_toStartOf="@+id/macDestData" />
 
     <TextView
         android:id="@+id/ipDestData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="26dp"
         android:text="No IP available"
         app:layout_constraintBottom_toTopOf="@+id/macDestText"
-        app:layout_constraintEnd_toEndOf="@+id/macDestText" />
+        app:layout_constraintEnd_toEndOf="@+id/ipDestText"
+        app:layout_constraintStart_toStartOf="@+id/ipDestText" />
 
     <TextView
         android:id="@+id/macSourceData"
@@ -104,15 +106,5 @@
         android:text="No MAC available"
         app:layout_constraintBottom_toTopOf="@+id/view2"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/dateText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="7dp"
-        android:text="No date available"
-        app:layout_constraintStart_toStartOf="@+id/data_packet_text"
-        app:layout_constraintTop_toBottomOf="@+id/data_packet_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

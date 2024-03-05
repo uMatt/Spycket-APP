@@ -46,6 +46,7 @@ public class DataView extends AppCompatActivity {
         TextView ipDestData = findViewById(R.id.ipDestData);
         TextView macSourceData = findViewById(R.id.macSourceData);
         TextView macDestData = findViewById(R.id.macDestData);
+        TextView dateData = findViewById(R.id.dateText);
 
         OkHttpClient httpClient = new OkHttpClient();
         String URL_BASE = "http://10.3.122.96:5000";
@@ -62,12 +63,12 @@ public class DataView extends AppCompatActivity {
             public void onResponse(@NonNull Call<List<Data>> call, @NonNull Response<List<Data>> response) {
                 List<Data> dataList = response.body();
                 if (dataList != null && !dataList.isEmpty()) {
-                    Data data = dataList.get(0); // Assuming you only have one data object
+                    Data data = dataList.get(0);
                     ipSourceData.setText(data.getIp_src());
                     ipDestData.setText(data.getIp_dst());
                     macSourceData.setText(data.getMac_src());
                     macDestData.setText(data.getMac_dst());
-                    // You can set other views as needed
+                    dateData.setText(data.getDate());
                 }
                 Toast.makeText(DataView.this, "Analysis fetched successfully", Toast.LENGTH_SHORT).show();
             }

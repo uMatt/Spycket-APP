@@ -28,8 +28,8 @@ import retrofit2.http.GET;
 public class CaptureView extends AppCompatActivity {
 
     public interface CaptureApiService {
-        @GET("api/informations")
-        Call<List<CaptureData>> getData();
+        @GET("api/execution")
+        Call<List<CaptureData>> getCapture();
     }
 
     private ListView listView;
@@ -51,7 +51,7 @@ public class CaptureView extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         CaptureApiService captureApiService = retrofit.create(CaptureApiService.class);
-        Call<List<CaptureData>> call = captureApiService.getData();
+        Call<List<CaptureData>> call = captureApiService.getCapture();
 
         call.enqueue(new Callback<List<CaptureData>>() {
             @Override
