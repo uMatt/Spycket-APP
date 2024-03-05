@@ -28,7 +28,7 @@ import retrofit2.http.GET;
 public class PacketView extends AppCompatActivity {
 
     public interface PacketApiService {
-        @GET("api/test/1")
+        @GET("api/informations/1")
         Call<List<PacketData>> getPacket();
     }
     private ListView listView;
