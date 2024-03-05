@@ -10,6 +10,8 @@ import androidx.core.view.WindowInsetsCompat;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 
 import com.cqrit.spycket.MainActivity;
 import com.cqrit.spycket.R;
