@@ -28,7 +28,7 @@ import retrofit2.http.GET;
 public class CaptureView extends AppCompatActivity {
 
     public interface CaptureApiService {
-        @GET("api/execution")
+        @GET("api/informations")
         Call<List<CaptureData>> getData();
     }
 

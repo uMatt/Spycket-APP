@@ -9,6 +9,15 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.cqrit.spycket.models.PacketData;
+
+import java.util.List;
+
+import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class DataView extends AppCompatActivity {
 
     @SuppressLint("MissingInflatedId")
@@ -22,5 +31,14 @@ public class DataView extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        OkHttpClient httpClient = new OkHttpClient();
+        String URL_BASE = "http://10.3.122.96:5000";
+        Retrofit retrofit = new Retrofit.Builder()
+                .client(httpClient)
+                .baseUrl(URL_BASE + "/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        PacketView.PacketApiService packetApiService = retrofit.create(PacketView.PacketApiService.class);
+        Call<List<PacketData>> call = packetApiService.getPacket();
     }
 }
