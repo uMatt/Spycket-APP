@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,13 +25,14 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 public class PacketView extends AppCompatActivity {
-
     public interface PacketApiService {
-        @GET("api/informations/1")
-        Call<List<PacketData>> getPacket();
+        @GET("api/informations/{id}")
+        Call<List<PacketData>> getPacket(@Path("id") String id);
     }
+
     private ListView listView;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -54,8 +56,10 @@ public class PacketView extends AppCompatActivity {
                 .baseUrl(URL_BASE + "/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+
+        String id = getIntent().getStringExtra("idExecution");
         PacketApiService packetApiService = retrofit.create(PacketApiService.class);
-        Call<List<PacketData>> call = packetApiService.getPacket();
+        Call<List<PacketData>> call = packetApiService.getPacket(id);
 
         call.enqueue(new Callback<List<PacketData>>() {
             @Override
@@ -76,9 +80,14 @@ public class PacketView extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 PacketData selectedData = arrayAdapter.getItem(position);
-                Intent intent = new Intent(PacketView.this, DataView.class);
-                intent.putExtra("selectedData", String.valueOf(selectedData));
-                startActivity(intent);
+                if (selectedData != null) {
+                    Intent intent = new Intent(PacketView.this, DataView.class);
+                    String num_trame = selectedData.getTrame();
+                    intent.putExtra("idData", String.valueOf(id));
+                    intent.putExtra("num_trame", num_trame);
+                    intent.putExtra("selectedData", String.valueOf(selectedData));
+                    startActivity(intent);
+                }
             }
         });
     }

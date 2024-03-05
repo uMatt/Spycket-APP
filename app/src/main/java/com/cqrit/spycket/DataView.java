@@ -20,14 +20,15 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 import com.cqrit.spycket.models.PacketData;
 
 public class DataView extends AppCompatActivity {
 
     public interface DataApiService {
-        @GET("api/informations/1/6")
-        Call<List<Data>> getData();
+        @GET("api/informations/{id}/{packet}")
+        Call<List<Data>> getData(@Path("id") String id, @Path("packet") String packet);
     }
 
     @SuppressLint("MissingInflatedId")
@@ -56,8 +57,13 @@ public class DataView extends AppCompatActivity {
                 .baseUrl(URL_BASE + "/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+
+        String id = getIntent().getStringExtra("idData");
+        Log.e("DataView", id);
+        String num_trame = getIntent().getStringExtra("num_trame");
+        Log.v("DataView", "Valeur : " + num_trame);
         DataView.DataApiService dataApiService = retrofit.create(DataView.DataApiService.class);
-        Call<List<Data>> call = dataApiService.getData();
+        Call<List<Data>> call = dataApiService.getData(id, num_trame);
 
         call.enqueue(new Callback<List<Data>>() {
             @Override

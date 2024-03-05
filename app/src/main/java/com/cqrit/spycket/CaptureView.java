@@ -74,11 +74,13 @@ public class CaptureView extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 CaptureData selectedData = arrayAdapter.getItem(position);
+                assert selectedData != null;
+                String idExecution = selectedData.getId();
                 String itemName = listView.getItemAtPosition(position).toString();
                 Intent intent = new Intent(CaptureView.this, PacketView.class);
                 intent.putExtra("selectedData", String.valueOf(selectedData));
                 intent.putExtra("itemName", itemName);
-                //intent.putExtra("ID_EXEC", )
+                intent.putExtra("idExecution", idExecution);
                 startActivity(intent);
             }
         });
