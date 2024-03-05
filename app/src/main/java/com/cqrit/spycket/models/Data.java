@@ -7,18 +7,17 @@ public class Data {
     private final String ip_dst;
     private final String mac_src;
     private final String mac_dst;
-
-    private final String date;
-
-
+    private final String protocol_application;
+    private final String protocol_transport;
 
     // Constructor
-    public Data(String ip_src, String ip_dst, String mac_src, String mac_dst, String date) {
+    public Data(String ip_src, String ip_dst, String mac_src, String mac_dst, String protocol_application, String protocol_transport) {
         this.ip_src = ip_src;
         this.ip_dst = ip_dst;
         this.mac_src = mac_src;
         this.mac_dst = mac_dst;
-        this.date = date;
+        this.protocol_application = protocol_application;
+        this.protocol_transport = protocol_transport;
     }
 
     public String getIp_src() {
@@ -37,13 +36,12 @@ public class Data {
         return mac_dst;
     }
 
-    public String getDate() {
-        return date;
+    public String getApp() {
+        return protocol_application;
     }
 
-    // Getters
-    /*@NonNull
-    public String toString() {
-        return this.ip_src;
-    }*/
+    public String getTransport() {
+        return protocol_transport;
+    }
+
 }
