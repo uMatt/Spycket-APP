@@ -2,6 +2,11 @@
 
 ## 📖 Features
 
+## 🚀Execution
+- Advanced Wireshark packet analysis: Explore every aspect of captured network traffic, including headers, data, used protocols, and much more.
+- Multi-protocol support: Supports a wide range of protocols, including TCP/IP, UDP, HTTP, DNS, and many more.
+- Interactive visualization: With clear and precise visualizations, quickly grasp communication patterns between devices.
+  
 ## 🚧 Contributing
 
 ## ⚖️ License
