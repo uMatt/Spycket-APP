@@ -1,6 +1,7 @@
 # 🦈 SPYCKET [![License: WTFPL](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-2.png)](http://www.wtfpl.net/)
-<p style="text-align: center;">
-![photo_2024-03-06_09-44-43](https://github.com/uMatt/Spycket-APP/assets/34341721/540c1d7f-3e7f-40e6-bf26-0091725d6618) ![photo_2024-03-06_09-44-34](https://github.com/uMatt/Spycket-APP/assets/34341721/1d28d5c3-31e4-4023-b33e-98a4b2fde635)
+<p align="center">
+  <img src="https://github.com/uMatt/Spycket-APP/assets/34341721/540c1d7f-3e7f-40e6-bf26-0091725d6618" alt="Home Screen"/>
+  <img src="https://github.com/uMatt/Spycket-APP/assets/34341721/1d28d5c3-31e4-4023-b33e-98a4b2fde635" alt="Data Screen"/>
 </p>
 
 
